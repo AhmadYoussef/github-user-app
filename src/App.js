@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CardList from './Components/cardList';
+import Form  from './Components/form';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    state = {
+        data : [],
+        isExists: false,
+    }
+    addNewProfile = (profileData)=>{
+        const index = this.state.data.findIndex(item => item.id === profileData.id);
+        if(index === -1){
+            this.setState(prevState => ({
+                data : [...prevState.data, profileData,]
+            }));
+        }else{
+            this.setState({isExists : true}, ()=>{
+                setTimeout(()=> this.setState({isExists: false}), 2000);
+            })
+        }
+        
+    }
+    deleteCard = (id)=>{
+        let data = this.state.data;
+        data.splice(id,1);
+        this.setState({data});
+    }
+    render(){
+        return (
+            <div className="App">
+                <Form isExists={this.state.isExists} onSubmitHandler ={this.addNewProfile} />
+                <CardList click={this.deleteCard} Profile={this.state.data} />
+            </div>
+        );
+    }
 }
 
 export default App;

@@ -1,0 +1,15 @@
+.card{
+    display: flex;
+    position: relative;
+    align-items:  center;
+    padding: 5px;
+    img{
+        width: 100px;
+        padding-right: 8px;
+    }
+    .close{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+}

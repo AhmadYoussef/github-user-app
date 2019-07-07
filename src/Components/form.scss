@@ -1,0 +1,21 @@
+form{
+    width: 100%;
+    display: flex;
+    position: relative;
+    background-color: gainsboro;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 60px 20px;
+    input[type="text"]{
+        width: 75%;
+        padding: 5px;
+    }
+    input[type='submit']{
+        width: 25%;
+    }
+    .message{
+        position: absolute;
+        bottom: 10px;
+        color: red;
+    }
+}
